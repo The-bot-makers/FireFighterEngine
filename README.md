@@ -1,4 +1,4 @@
-# FireFighterEngine : A Chess Engine In Python
+# FireFighterEngine : A UCI Chess Engine Written In Python
 <br>
 
 ## How It Works
