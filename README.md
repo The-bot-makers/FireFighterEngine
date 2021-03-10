@@ -2,7 +2,7 @@
 
 ## How It Works
 
-This is a chess engine written in python, using the convensional brute force method. It analyzes the last node of each branch, then it decides the one which has the most advantage. Next it checks if with a different opponent move, what would be its [Eval Number](https://github.com/The-bot-makers/FireFighterEngine#Eval-Number). Here alpha-beta is involved. If any branch has greater (undecided) advantage, it is cancelled. The advantages are then averaged out.It does the same with each move and then each thread returns a best move. They get added to the 'Qualified Moves' list. Then each 'qualified move' goes through the same process as mentioned above and finally, returns the final best move.
+This is a chess engine written in python, using the convensional brute force method. It analyzes the last node of each branch, then it decides the one which has the most advantage. Next it checks if with a different opponent move, what would be its [Eval Number](https://github.com/The-bot-makers/FireFighterEngine#Eval-Number). Here alpha-beta is involved. If any branch has less than (undecided) advantage, it is cancelled. The advantages are then averaged out.It does the same with each move and then each thread returns a best move. They get added to the 'Qualified Moves' list. Then each 'qualified move' goes through the same process as mentioned above and finally, returns the final best move.
 
 ## How To Use It
 
