@@ -26,4 +26,4 @@ The eval number is a number representing how much advantage the engine has. It i
   
 ### Positional
   
-Extra pawn on the same file(extra pawns=n) = -(1st extra pawn = -0.1, 2nd = -0.2(total -0.3 because of the 1st) 3rd = -0.3(total -0.6 because of the 1st and 2nd). Then they get added up.)
+Extra pawn on the same file = -(1st extra pawn = -0.1, 2nd = -0.2(total -0.3 because of the 1st) 3rd = -0.3(total -0.6 because of the 1st and 2nd). Then they get added up.)
