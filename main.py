@@ -80,6 +80,40 @@ class FFEngine():
         brd.set_fen(fen)
         
     def GetEvalnumber(self,fen):
+        evlnum=0
         brd=gamelib.Board()
         brd.set_fen(fen)
-        
+        trn=brd.turn
+        bb=gamelib.BaseBoard()
+        bb.set_board_fen(brd.board_fen())
+        piecemap=bb.piece_map()
+        engpieces=[x.symbol().lower() for x in list(piecemap.values()) if x.color==trn]
+        opppieces=[x.symbol().lower() for x in list(piecemap.values()) if x.color!=trn]
+        engadv=engpieces.copy()
+        oppadv=opppieces.copy()
+        for i in engpieces:
+            if i in oppadv:
+                engadv.remove(i)
+                oppadv.remove(i)
+                
+        for i in engadv:
+            if i=='q':
+                evlnum+=9
+            elif i=='r':
+                evlnum+=5
+            elif i=='b' or i=='n':
+                evlnum+=3
+            elif i=='p':
+                evlnum+=1
+                
+        for i in oppadv:
+            if i=='q':
+                evlnum-=9
+            elif i=='r':
+                evlnum-=5
+            elif i=='b' or i=='n':
+                evlnum-=3
+            elif i=='p':
+                evlnum-=1
+                
+        return evlnum
