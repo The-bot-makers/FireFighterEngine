@@ -80,7 +80,7 @@ class FFEngine():
         brd.set_fen(fen)
         
     def GetEvalnumber(self,fen):
-        evlnum=0
+        evlnum=0.0
         brd=gamelib.Board()
         brd.set_fen(fen)
         trn=brd.turn
@@ -98,22 +98,29 @@ class FFEngine():
                 
         for i in engadv:
             if i=='q':
-                evlnum+=9
+                evlnum+=9.0
             elif i=='r':
-                evlnum+=5
+                evlnum+=5.0
             elif i=='b' or i=='n':
-                evlnum+=3
+                evlnum+=3.0
             elif i=='p':
-                evlnum+=1
+                evlnum+=1.0
                 
         for i in oppadv:
             if i=='q':
-                evlnum-=9
+                evlnum-=9.0
             elif i=='r':
-                evlnum-=5
+                evlnum-=5.0
             elif i=='b' or i=='n':
-                evlnum-=3
+                evlnum-=3.0
             elif i=='p':
-                evlnum-=1
+                evlnum-=1.0
                 
+        for i in range(1,9):
+            pawns=0
+            for j in range(i,64,8):
+                if j in piecemap and piecemap[j]==gamelib.Piece(1,trn):
+                    pawns+=1
+            for j in range(pawns):
+                evlnum-=((j+1)/10)
         return evlnum
