@@ -1,7 +1,6 @@
 import chess as gamelib
 import threading
 import time
-from numba import jit
 
 class FFEngine():
     def __init__(self):
@@ -124,3 +123,20 @@ class FFEngine():
             for j in range(pawns):
                 evlnum-=((j+1)/10)
         return evlnum
+    def IsLocked(self,fen,pc=10,sqs=gamelib.SquareSet([gamelib.C3,gamelib.C4,gamelib.C5,gamelib.C6,gamelib.D3,gamelib.D4,gamelib.D5,gamelib.D6,gamelib.E3,gamelib.E4,gamelib.E5,gamelib.E6,gamelib.F3,gamelib.F4,gamelib.F5,gamelib.F6,gamelib.B3,gamelib.B4,gamelib.B5,gamelib.B6,gamelib.G3,gamelib.G4,gamelib.G5,gamelib.G6])):
+        DetectionRange=sqs
+        PieceThreshold=pc
+        DetectedPieces=0
+        fenbrd=gamelib.Board()
+        fenbrd.set_fen(fen)
+        bb=gamelib.BaseBoard()
+        bb.set_board_fen(fenbrd.board_fen())
+        del(fenbrd)
+        pcs=list(bb.piece_map().keys())
+        for sqr in DetectionRange:
+            if sqr in pcs:
+                DetectedPieces+=1
+        if DetectedPieces>PieceThreshold:
+            return True
+        else:
+            return False
